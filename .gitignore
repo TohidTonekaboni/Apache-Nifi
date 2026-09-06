@@ -1,0 +1,6 @@
+# Environment files with real credentials
+.env
+**/.env
+
+# OS cruft
+.DS_Store
