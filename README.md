@@ -19,7 +19,7 @@ Check items off and fill in the commit hash as you go.
 | # | Section | Status | Commit |
 |---|---|---|---|
 | 1 | 🧩 Core Concepts & Architecture | ⬜ Not started | — |
-| 2 | 💻 Installation & Environment Setup | ⬜ Not started | — |
+| 2 | 💻 Installation & Environment Setup | ✅ Done | _(pending commit)_ |
 | 3 | 🖥️ Building Your First Flows | ⬜ Not started | — |
 | 4 | 📥 Data Ingestion | ⬜ Not started | — |
 | 5 | 🔄 Data Transformation & Routing | ⬜ Not started | — |
@@ -71,12 +71,17 @@ Each section folder typically contains:
 ## 🚀 Quick Start
 
 ```bash
-# Spin up a local NiFi instance (see 02-setup/ once pushed for the full compose file)
-docker run --name nifi -p 8443:8443 -d apache/nifi:latest
+# Spin up a local NiFi instance using the compose setup in 02-setup/
+cd 02-setup
+cp .env.example .env   # then edit .env — set a real password (>= 12 characters)
+docker compose up -d
 
-# Access the UI
+# Access the UI (HTTPS only, note the /nifi path)
 open https://localhost:8443/nifi
 ```
+
+> See [`02-setup/notes.md`](02-setup/notes.md) for the gotchas we actually hit (HTTP vs
+> HTTPS, the 12-character password minimum) and how they were fixed.
 
 ---
 
