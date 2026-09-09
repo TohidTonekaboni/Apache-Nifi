@@ -8,3 +8,6 @@
 # Generated output from running the demo flows — keep the folders, not their contents
 03-first-flows/data-out/*
 !03-first-flows/data-out/.gitkeep
+
+# JDBC driver jars — re-fetch with 04-data-ingestion/drivers/download.sh
+04-data-ingestion/drivers/*.jar

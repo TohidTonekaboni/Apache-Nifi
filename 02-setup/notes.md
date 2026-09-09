@@ -66,6 +66,23 @@ docker compose down -v   # -v wipes volumes — fine for a learning sandbox, not
 docker compose up -d
 ```
 
+### ❌ Container healthcheck shows `unhealthy` even though NiFi works fine
+The image's first-boot setup writes `nifi.web.https.host` as the **container's hostname at
+that moment** (e.g. `nifi.web.https.host=c1c1be7fc6ae`, a container ID). Since `conf` is a
+persistent volume, that value survives container recreation — but a *new* container gets a
+*new* hostname, so Jetty ends up bound to an address that no longer matches anything local.
+External access still works (Docker's port-forwarding reaches the container's real interface
+regardless), but the healthcheck's `curl https://127.0.0.1:8443/nifi` *from inside the
+container* gets `Connection refused`, because nothing is actually listening on loopback.
+
+✅ Fix: pin the bind host explicitly instead of letting it default to the hostname:
+```yaml
+environment:
+  NIFI_WEB_HTTPS_HOST: 0.0.0.0
+```
+Applied in [`docker-compose.yml`](docker-compose.yml) — `docker inspect nifi` now reports
+`healthy` instead of `unhealthy`.
+
 ### Verify login without a browser (useful for scripting/CI)
 ```bash
 curl -sk -X POST "https://localhost:8443/nifi-api/access/token" \

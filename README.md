@@ -21,7 +21,7 @@ Check items off and fill in the commit hash as you go.
 | 1 | 🧩 Core Concepts & Architecture | ⬜ Not started | — |
 | 2 | 💻 Installation & Environment Setup | ✅ Done | _(pending commit)_ |
 | 3 | 🖥️ Building Your First Flows | ✅ Done | _(pending commit)_ |
-| 4 | 📥 Data Ingestion | ⬜ Not started | — |
+| 4 | 📥 Data Ingestion | ✅ Done | _(pending commit)_ |
 | 5 | 🔄 Data Transformation & Routing | ⬜ Not started | — |
 | 6 | 📤 Data Egress (Sinks) | ⬜ Not started | — |
 | 7 | ⚖️ Flow Control, Reliability & Performance | ⬜ Not started | — |
