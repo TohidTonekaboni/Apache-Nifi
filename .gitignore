@@ -4,3 +4,7 @@
 
 # OS cruft
 .DS_Store
+
+# Generated output from running the demo flows — keep the folders, not their contents
+03-first-flows/data-out/*
+!03-first-flows/data-out/.gitkeep

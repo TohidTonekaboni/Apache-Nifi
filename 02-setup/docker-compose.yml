@@ -17,6 +17,9 @@ services:
       - nifi_provenance:/opt/nifi/nifi-current/provenance_repository
       - nifi_state:/opt/nifi/nifi-current/state
       - nifi_logs:/opt/nifi/nifi-current/logs
+      # Bind mounts used by the Section 3 exercise flows (GetFile/ListFile source, PutFile destination)
+      - ../03-first-flows/data-in:/opt/nifi/nifi-current/data-in
+      - ../03-first-flows/data-out:/opt/nifi/nifi-current/data-out
     healthcheck:
       test: ["CMD", "curl", "-k", "-f", "https://localhost:8443/nifi"]
       interval: 30s
