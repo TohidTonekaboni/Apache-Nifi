@@ -25,6 +25,10 @@ services:
       - ../03-first-flows/data-out:/opt/nifi/nifi-current/data-out
       # Section 4 — JDBC drivers for DBCPConnectionPool (see 04-data-ingestion/drivers/download.sh)
       - ../04-data-ingestion/drivers:/opt/nifi/nifi-current/drivers
+      # Section 5 — transform & routing exercise input/outputs
+      - ../05-transform-routing/data-in:/opt/nifi/nifi-current/05-data-in
+      - ../05-transform-routing/data-good:/opt/nifi/nifi-current/05-data-good
+      - ../05-transform-routing/data-quarantine:/opt/nifi/nifi-current/05-data-quarantine
     healthcheck:
       test: ["CMD", "curl", "-k", "-f", "https://127.0.0.1:8443/nifi"]
       interval: 30s

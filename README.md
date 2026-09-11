@@ -19,10 +19,10 @@ Check items off and fill in the commit hash as you go.
 | # | Section | Status | Commit |
 |---|---|---|---|
 | 1 | 🧩 Core Concepts & Architecture | ⬜ Not started | — |
-| 2 | 💻 Installation & Environment Setup | ✅ Done | _(pending commit)_ |
-| 3 | 🖥️ Building Your First Flows | ✅ Done | _(pending commit)_ |
-| 4 | 📥 Data Ingestion | ✅ Done | _(pending commit)_ |
-| 5 | 🔄 Data Transformation & Routing | ⬜ Not started | — |
+| 2 | 💻 Installation & Environment Setup | ✅ Done | `1bfc905`, `1c13bd9` |
+| 3 | 🖥️ Building Your First Flows | ✅ Done | `1b12449` |
+| 4 | 📥 Data Ingestion | ✅ Done | `bc93d9c` |
+| 5 | 🔄 Data Transformation & Routing | ✅ Done | _(pending commit)_ |
 | 6 | 📤 Data Egress (Sinks) | ⬜ Not started | — |
 | 7 | ⚖️ Flow Control, Reliability & Performance | ⬜ Not started | — |
 | 8 | 🕵️ Monitoring, Provenance & Troubleshooting | ⬜ Not started | — |

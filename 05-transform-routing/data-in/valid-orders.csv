@@ -1,0 +1,3 @@
+order_id,customer,item,amount,order_date
+1,Alice,Widget,19.99,2026-01-05
+2,Bob,Gadget,49.50,2026-01-06
