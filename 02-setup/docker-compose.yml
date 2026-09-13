@@ -105,6 +105,36 @@ services:
     ports:
       - "${HTTPBIN_PORT:-8080}:80"
 
+  # Section 6 — SFTP destination for the PutSFTP egress exercise. Optional.
+  # Start with: docker compose --profile sftp up -d
+  # NiFi reaches it at host "sftp", port 22. Uploaded files land in 06-data-egress/data-out-sftp/
+  # on the host (user "nifiuser", home dir "upload").
+  sftp:
+    image: atmoz/sftp:latest
+    container_name: nifi-sftp
+    profiles: ["sftp"]
+    restart: unless-stopped
+    ports:
+      - "${SFTP_PORT:-2222}:22"
+    volumes:
+      - ../06-data-egress/data-out-sftp:/home/nifiuser/upload
+    command: nifiuser:${SFTP_PASSWORD:-sftp_password}:1001:100:upload
+
+  # Section 6 — S3-compatible object storage (via LocalStack) for the PutS3Object egress
+  # exercise. Optional — avoids needing real AWS credentials for the hands-on demo.
+  # Start with: docker compose --profile s3 up -d. NiFi reaches it at host "localstack", port 4566.
+  localstack:
+    image: localstack/localstack:3
+    container_name: nifi-localstack
+    profiles: ["s3"]
+    restart: unless-stopped
+    environment:
+      SERVICES: s3
+    ports:
+      - "${LOCALSTACK_PORT:-4566}:4566"
+    volumes:
+      - nifi_localstack_data:/var/lib/localstack
+
 volumes:
   nifi_conf:
   nifi_content:
@@ -117,3 +147,4 @@ volumes:
   nifi_registry_flow_storage:
   nifi_postgres_data:
   nifi_redpanda_data:
+  nifi_localstack_data:

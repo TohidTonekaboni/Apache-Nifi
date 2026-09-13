@@ -11,3 +11,7 @@
 
 # JDBC driver jars — re-fetch with 04-data-ingestion/drivers/download.sh
 04-data-ingestion/drivers/*.jar
+
+# Generated output from the PutSFTP egress exercise — keep the folder, not its contents
+06-data-egress/data-out-sftp/*
+!06-data-egress/data-out-sftp/.gitkeep
