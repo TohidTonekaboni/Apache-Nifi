@@ -25,7 +25,7 @@ Check items off and fill in the commit hash as you go.
 | 5 | 🔄 Data Transformation & Routing | ✅ Done | _(pending commit)_ |
 | 6 | 📤 Data Egress (Sinks) | ✅ Done | _(pending commit)_ |
 | 7 | ⚖️ Flow Control, Reliability & Performance | ✅ Done | _(pending commit)_ |
-| 8 | 🕵️ Monitoring, Provenance & Troubleshooting | ⬜ Not started | — |
+| 8 | 🕵️ Monitoring, Provenance & Troubleshooting | ✅ Done | _(pending commit)_ |
 | 9 | 🔐 Clustering, Security & Governance | ⬜ Not started | — |
 | 10 | 🏆 Advanced Topics & Capstone Project | ⬜ Not started | — |
 
