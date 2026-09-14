@@ -15,3 +15,7 @@
 # Generated output from the PutSFTP egress exercise — keep the folder, not its contents
 06-data-egress/data-out-sftp/*
 !06-data-egress/data-out-sftp/.gitkeep
+
+# Generated output from the dead-letter/retry exercise — keep the folder, not its contents
+07-reliability-performance/data-deadletter/*
+!07-reliability-performance/data-deadletter/.gitkeep

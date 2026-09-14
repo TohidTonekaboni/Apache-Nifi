@@ -29,6 +29,8 @@ services:
       - ../05-transform-routing/data-in:/opt/nifi/nifi-current/05-data-in
       - ../05-transform-routing/data-good:/opt/nifi/nifi-current/05-data-good
       - ../05-transform-routing/data-quarantine:/opt/nifi/nifi-current/05-data-quarantine
+      # Section 7 — dead-letter sink for the retry/back-pressure exercise
+      - ../07-reliability-performance/data-deadletter:/opt/nifi/nifi-current/07-data-deadletter
     healthcheck:
       test: ["CMD", "curl", "-k", "-f", "https://127.0.0.1:8443/nifi"]
       interval: 30s
