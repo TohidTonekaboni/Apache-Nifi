@@ -26,7 +26,7 @@ Check items off and fill in the commit hash as you go.
 | 6 | 📤 Data Egress (Sinks) | ✅ Done | _(pending commit)_ |
 | 7 | ⚖️ Flow Control, Reliability & Performance | ✅ Done | _(pending commit)_ |
 | 8 | 🕵️ Monitoring, Provenance & Troubleshooting | ✅ Done | _(pending commit)_ |
-| 9 | 🔐 Clustering, Security & Governance | ⬜ Not started | — |
+| 9 | 🔐 Clustering, Security & Governance | ✅ Done | _(pending commit)_ |
 | 10 | 🏆 Advanced Topics & Capstone Project | ⬜ Not started | — |
 
 > Status legend: ⬜ Not started · 🔶 In progress · ✅ Done

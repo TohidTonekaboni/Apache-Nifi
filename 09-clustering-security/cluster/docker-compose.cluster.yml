@@ -1,0 +1,78 @@
+# Standalone 3-node NiFi cluster for the Section 9 clustering exercise.
+# Deliberately separate from 02-setup/docker-compose.yml — running a 3-node cluster
+# alongside the rest of the stack would be unnecessarily heavy for every other section.
+#
+# Usage:
+#   cd 09-clustering-security/cluster
+#   docker compose -f docker-compose.cluster.yml up -d
+#   docker compose -f docker-compose.cluster.yml down -v   # tear down when done
+#
+# Plain HTTP (not HTTPS) is used here on purpose to keep the cluster config focused on
+# clustering itself rather than inter-node TLS/keystore setup (that's its own topic —
+# see notes.md's Security section for what a production TLS cluster adds on top of this).
+
+services:
+  zookeeper:
+    image: zookeeper:3.9
+    container_name: nifi-cluster-zk
+    restart: unless-stopped
+    ports:
+      - "2181:2181"
+    environment:
+      ZOO_4LW_COMMANDS_WHITELIST: srvr,ruok,stat,mntr
+
+  nifi-node1:
+    image: apache/nifi:1.27.0
+    container_name: nifi-cluster-node1
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+    environment: &nifi-cluster-env
+      NIFI_WEB_HTTP_PORT: 8080
+      NIFI_CLUSTER_IS_NODE: "true"
+      NIFI_CLUSTER_NODE_PROTOCOL_PORT: 11443
+      NIFI_ZK_CONNECT_STRING: zookeeper:2181
+      NIFI_ELECTION_MAX_WAIT: "1 min"
+      NIFI_JVM_HEAP_INIT: 512m
+      NIFI_JVM_HEAP_MAX: 512m
+      # Required for clustered nodes — must be identical across every node (>= 12 chars)
+      NIFI_SENSITIVE_PROPS_KEY: "clusterDemoSensitiveKey123"
+    depends_on:
+      - zookeeper
+    volumes:
+      - nifi_node1_state:/opt/nifi/nifi-current/state
+      - nifi_node1_flowfile:/opt/nifi/nifi-current/flowfile_repository
+
+  nifi-node2:
+    image: apache/nifi:1.27.0
+    container_name: nifi-cluster-node2
+    restart: unless-stopped
+    ports:
+      - "8082:8080"
+    environment: *nifi-cluster-env
+    depends_on:
+      - zookeeper
+    volumes:
+      - nifi_node2_state:/opt/nifi/nifi-current/state
+      - nifi_node2_flowfile:/opt/nifi/nifi-current/flowfile_repository
+
+  nifi-node3:
+    image: apache/nifi:1.27.0
+    container_name: nifi-cluster-node3
+    restart: unless-stopped
+    ports:
+      - "8083:8080"
+    environment: *nifi-cluster-env
+    depends_on:
+      - zookeeper
+    volumes:
+      - nifi_node3_state:/opt/nifi/nifi-current/state
+      - nifi_node3_flowfile:/opt/nifi/nifi-current/flowfile_repository
+
+volumes:
+  nifi_node1_state:
+  nifi_node1_flowfile:
+  nifi_node2_state:
+  nifi_node2_flowfile:
+  nifi_node3_state:
+  nifi_node3_flowfile:
